@@ -50,15 +50,22 @@ function buildApp() {
   app.use(buildHealthRouter(healthController));
   app.use(buildLanguageRouter(languageController));
   app.use(buildPortfolioRouter(portfolioController));
+  
+  // 👉 FRONT (ANTES del notFound)
+  const publicDir = path.join(process.cwd(), 'public');
+
+  app.use(express.static(publicDir));
+
+  app.get('*', (req, res) => {
+    if (req.path.startsWith('/api')) {
+      return res.status(404).end();
+    }
+    res.sendFile(path.join(publicDir, 'index.html'));
+  });
 
   // Error handlers
   app.use(notFoundHandler);
   app.use(errorHandler);
-
-  const publicDir = path.join(__dirname, '..', 'public');
-  app.use(express.static(publicDir));
-  app.get('*', (req, res) => res.sendFile(path.join(publicDir, 'index.html')));
-
   return app;
 }
 
