@@ -2,9 +2,10 @@
 // before any alias-based requires are resolved. It uses the
 // `module-alias` package to map alias names to the corresponding
 // directories configured in package.json under `_moduleAliases`.
-require('module-alias/register');
 const path = require('path');
-require('module-alias').addAliases({
+const moduleAlias = require('module-alias');
+
+moduleAlias.addAliases({
  application: path.join(__dirname, 'application'),
  domain: path.join(__dirname, 'domain'),
  infrastructure: path.join(__dirname, 'infrastructure'),
