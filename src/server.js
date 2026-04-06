@@ -3,6 +3,12 @@
 // `module-alias` package to map alias names to the corresponding
 // directories configured in package.json under `_moduleAliases`.
 require('module-alias/register');
+const path = require('path');
+require('module-alias').addAliases({
+ application: path.join(__dirname, 'application'),
+ domain: path.join(__dirname, 'domain'),
+ infrastructure: path.join(__dirname, 'infrastructure'),
+});
 
 const { buildApp } = require('./app');
 const { env } = require('infrastructure/config/env');
