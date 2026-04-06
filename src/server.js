@@ -9,6 +9,6 @@ const { env } = require('infrastructure/config/env');
 
 const app = buildApp();
 
-app.listen(env.port, () => {
-  console.log(`Portfolio API listening on port ${env.port}`);
-});
+const port = process.env.PORT || env.port || 3000;
+app.listen(port, () => console.log(`Listening on port ${port}`));
+

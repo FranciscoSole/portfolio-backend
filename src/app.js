@@ -1,5 +1,6 @@
 const cors = require('cors');
 const express = require('express');
+const path = require('path');
 const helmet = require('helmet');
 const { GetLanguagesUseCase } = require('application/use-cases/get-languages.use-case');
 const { GetPortfolioUseCase } = require('application/use-cases/get-portfolio.use-case');
@@ -52,6 +53,10 @@ function buildApp() {
   // Error handlers
   app.use(notFoundHandler);
   app.use(errorHandler);
+
+  const publicDir = path.join(__dirname, '..', 'public');
+  app.use(express.static(publicDir));
+  app.get('*', (req, res) => res.sendFile(path.join(publicDir, 'index.html')));
 
   return app;
 }
