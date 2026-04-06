@@ -1,0 +1,23 @@
+{
+  "name": "portfolio-api",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js"
+  },
+  "_moduleAliases": {
+    "application": "src/application",
+    "domain": "src/domain",
+    "infrastructure": "src/infrastructure"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2",
+    "helmet": "^8.0.0",
+    "mysql2": "^3.11.5",
+    "module-alias": "^2.2.2"
+  }
+}
